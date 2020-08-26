@@ -22,7 +22,10 @@ namespace Leave_mangement.Controllers
         {
             return View();
         }
-
+        public IActionResult dev()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
