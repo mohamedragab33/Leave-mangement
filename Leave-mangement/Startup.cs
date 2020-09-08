@@ -55,14 +55,15 @@ namespace Leave_mangement
 
 
 
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<IdentityUser>().AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
+            UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -82,6 +83,7 @@ namespace Leave_mangement
 
             app.UseAuthentication();
             app.UseAuthorization();
+            seedData.seed(userManager,roleManager);
 
             app.UseEndpoints(endpoints =>
             {

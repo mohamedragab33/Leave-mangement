@@ -6,11 +6,15 @@ using AutoMapper;
 using Leave_mangement.Contracts;
 using Leave_mangement.Data;
 using Leave_mangement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Leave_mangement.Controllers
 {
+
+
+    [Authorize(Roles = "Adminstrator")]
     public class LeaveTypesController : Controller
     {
 
@@ -22,7 +26,7 @@ namespace Leave_mangement.Controllers
             _Mapper = Mapper;
 
         }
-
+      
 
         // GET: LeaveTypes
         public ActionResult Index()
